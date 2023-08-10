@@ -11,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
+import ErrorBoundary from "services/ErrorBoundary";
+
 // Router berjalan termasuk saat logout
 import Router from "next/router";
 Router.events.on("routeChangeStart", () => NProgress.start());
@@ -28,7 +30,7 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ErrorBoundary>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
@@ -50,7 +52,7 @@ function MyApp({ Component, pageProps }) {
         )}
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </>
+    </ErrorBoundary>
   );
 }
 

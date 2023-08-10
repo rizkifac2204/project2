@@ -5,7 +5,7 @@ import {
   DeleteUpload,
   kompresingImage,
 } from "services/UploadService";
-import { PATH_FOTO } from "constants/AppAttrs";
+import { PATH_FOTO } from "assets/appConfig";
 
 export const config = {
   api: {

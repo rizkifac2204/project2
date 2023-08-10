@@ -1,4 +1,5 @@
-import { useState } from "react";
+import Head from "next/head";
+import AppConfig from "assets/appConfig";
 import axios from "axios";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -7,46 +8,20 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
 import CardActions from "@mui/material/CardActions";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid from "@mui/material/Grid";
 // ICON
 import PeopleIcon from "@mui/icons-material/People";
-import PanToolIcon from "@mui/icons-material/PanTool";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
-import WifiIcon from "@mui/icons-material/Wifi";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
+import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 
 // Components
-import {
-  DashboardCollapse,
-  TableBelumRespon,
-} from "components/Dashboard/DashboardComponent";
 import AlertInfo from "components/Dashboard/AlertInfo";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 function Dashboard() {
-  const [expandedOnline, setExpandedOnline] = useState(false);
-  const [expandedOffline, setExpandedOffline] = useState(false);
-
-  const handleExpandOnlineClick = () => {
-    setExpandedOnline(!expandedOnline);
-  };
-
   const { data: main, isFetching: isFetchingMain } = useQuery({
     queryKey: ["dashboard", "main"],
     queryFn: ({ signal }) =>
@@ -58,33 +33,13 @@ function Dashboard() {
         }),
   });
 
-  const { data: status, isFetching: isFetchingStatus } = useQuery({
-    queryKey: ["dashboard", "status"],
-    queryFn: ({ signal }) =>
-      axios
-        .get(`/api/dashboard/status`, { signal })
-        .then((res) => res.data)
-        .catch((err) => {
-          throw new Error(err.response.data.message);
-        }),
-  });
-
-  const { data: unresponse, isFetching: isFetchingUnresponse } = useQuery({
-    queryKey: ["dashboard", "unresponse"],
-    queryFn: ({ signal }) =>
-      axios
-        .get(`/api/dashboard/belumRespon`, { signal })
-        .then((res) => res.data)
-        .catch((err) => {
-          throw new Error(err.response.data.message);
-        }),
-  });
-
   return (
     <>
-      {isFetchingMain || isFetchingStatus || isFetchingUnresponse ? (
-        <LinearProgress />
-      ) : null}
+      <Head>
+        <title>{`Dashboard - ${AppConfig.brandName}`}</title>
+      </Head>
+
+      {isFetchingMain && <LinearProgress />}
 
       <Grid container spacing={2}>
         <Grid item xs={12}>
@@ -138,10 +93,10 @@ function Dashboard() {
             <Box>
               <CardContent>
                 <Typography component="div" variant="h5">
-                  {main?.jumlahDip}
+                  {main?.jumlahPemilih}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
-                  DIP
+                  Pemilih
                 </Typography>
               </CardContent>
               <CardActions>
@@ -175,10 +130,10 @@ function Dashboard() {
             <Box>
               <CardContent>
                 <Typography component="div" variant="h5">
-                  {main?.jumlahSurvey}
+                  {main?.jumlahTps}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
-                  Survey
+                  TPS
                 </Typography>
               </CardContent>
               <CardActions>
@@ -212,10 +167,10 @@ function Dashboard() {
             <Box>
               <CardContent>
                 <Typography component="div" variant="h5">
-                  {main?.jumlahKeberatan}
+                  {main?.jumlahPartai}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
-                  Keberatan
+                  Partai
                 </Typography>
               </CardContent>
               <CardActions>
@@ -234,70 +189,8 @@ function Dashboard() {
                 alignContent: "center",
               }}
             >
-              <PanToolIcon color="error" sx={{ fontSize: 120 }} />
+              <FlagOutlinedIcon color="error" sx={{ fontSize: 120 }} />
             </Box>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12}>
-          <Card
-            sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}
-          >
-            <Box>
-              <CardContent>
-                <Typography component="div" variant="h5">
-                  {main?.jumlahPermohonan}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                  Permohonan
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <Link href="/admin/permohonan">
-                  <SettingsSuggestIcon
-                    color="secondary"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Link>
-                <ExpandMore
-                  expand={expandedOnline}
-                  onClick={handleExpandOnlineClick}
-                  aria-expanded={expandedOnline}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
-              }}
-            >
-              <WifiIcon color="success" sx={{ fontSize: 120 }} />
-            </Box>
-          </Card>
-          <DashboardCollapse
-            expanded={expandedOnline}
-            arr={status?.result}
-            jumlah={main?.jumlahPermohonan}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <Card>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                Bawaslu Dengan Jumlah Permohonan Proses Terbanyak
-              </Typography>
-              <TableBelumRespon arr={unresponse ? unresponse : []} />
-            </CardContent>
           </Card>
         </Grid>
       </Grid>

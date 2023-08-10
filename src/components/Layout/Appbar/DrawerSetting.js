@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Link from "next/link";
 import AuthContext from "context/AuthContext";
 
@@ -139,9 +140,19 @@ function DrawerSetting(props) {
           href="/admin/profile"
           variant="outlined"
           size="small"
-          startIcon={<ManageAccountsIcon />}
+          startIcon={<AccountCircleOutlinedIcon />}
         >
           Profile
+        </Button>
+
+        <Button
+          component={Link}
+          href="/admin/profile/setting"
+          variant="outlined"
+          size="small"
+          startIcon={<ManageAccountsIcon />}
+        >
+          Setting
         </Button>
 
         <Button

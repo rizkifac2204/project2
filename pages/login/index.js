@@ -26,7 +26,7 @@ import FormHelperText from "@mui/material/FormHelperText";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-import AppConfig, { BRAND_NAME } from "assets/appConfig";
+import AppConfig from "assets/appConfig";
 
 // COMPONENTS
 import GoogleSignInButton from "components/Auth/SignIn";
@@ -96,7 +96,7 @@ export default function Login(props) {
   return (
     <>
       <Head>
-        <title>{`Sign In - ${BRAND_NAME}`}</title>
+        <title>{`Sign In - ${AppConfig.brandName}`}</title>
       </Head>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <Grid item xs={false} sm={4} md={7}>

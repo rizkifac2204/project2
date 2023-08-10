@@ -2,7 +2,7 @@ import multer from "multer";
 import * as fs from "fs";
 import getLogger from "middlewares/getLogger";
 import sharp from "sharp";
-import { PATH_UPLOAD } from "constants/AppAttrs";
+import { PATH_UPLOAD } from "assets/appConfig";
 
 const storage = () => {
   return multer.diskStorage({

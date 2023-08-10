@@ -1,5 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import AppConfig from "assets/appConfig";
 
 export default function Footer(props) {
   return (
@@ -10,9 +11,8 @@ export default function Footer(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://bawaslu.go.id" target={`_blank`}>
-        Pusdatin Bawaslu Republik Indonesia
+      <Link color="inherit" href={AppConfig.brandLink} target={`_blank`}>
+        {AppConfig.copyRightText}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
