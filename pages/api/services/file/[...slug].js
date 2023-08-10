@@ -1,36 +1,40 @@
-import PublicHandler from "middlewares/hanlderPublic";
-const path = require("path");
-const fs = require("fs");
-var mime = require("mime-types");
-import getLogger from "middlewares/getLogger";
+import handlerPublic from "middlewares/hanlderPublic";
+import { join } from "path";
+import { createReadStream, existsSync } from "fs";
+import mime from "mime";
 
-export default PublicHandler().get(async (req, res) => {
-  const _path = req.query.slug.join("/");
-  if (!_path)
-    return res.status(404).json({
-      message: "File tidak terdeteksi",
-      type: "error",
-    });
-  const filePath = path.resolve("./", _path);
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
+
+export default handlerPublic().get(async (req, res) => {
   try {
-    if (fs.existsSync(filePath)) {
-      fs.readFile(filePath, function (err, data) {
-        res.writeHead(200, { "Content-Type": mime.lookup(filePath) });
-        res.write(data);
-        return res.end();
-      });
-    } else {
+    const filePath = join(...req.query.slug);
+    if (!filePath || !existsSync(filePath)) {
       return res.status(404).json({
         message: "File tidak ditemukan",
         type: "error",
       });
     }
+
+    // Memeriksa apakah file yang diminta adalah file gambar berdasarkan tipe kontennya
+    const mimeType = mime.getType(filePath);
+    if (!mimeType || !mimeType.startsWith("image/")) {
+      return res.status(404).json({
+        message: "File tidak Valid",
+        type: "error",
+      });
+    }
+
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    createReadStream(filePath).pipe(res);
   } catch (error) {
-    getLogger.error(error);
+    console.error(error);
     return res.status(400).json({
       message: "File error",
       type: "error",
     });
   }
-  // res.json({ data: "apa" });
 });

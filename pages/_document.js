@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="description" content="PPID v.2"></meta>
+          <meta name="description" content="Lorem It Project 2"></meta>
           <link rel="icon" href="/favicon.ico" type="image/x-icon" />
           <link
             rel="stylesheet"

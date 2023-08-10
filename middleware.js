@@ -16,8 +16,38 @@ export default async function middleware(req, res) {
   if (pathname === "/")
     if (verifiedToken) return NextResponse.redirect(`${origin}/admin`);
 
-  if (pathname.startsWith("/admin"))
-    if (!verifiedToken) return NextResponse.redirect(`${origin}/`);
+  if (pathname.startsWith("/admin")) {
+    if (!verifiedToken) return NextResponse.redirect(`${origin}/login`);
+
+    // limit untuk user TPS
+    if (verifiedToken.role === "TPS") {
+      // halaman wilayah
+      if (pathname.startsWith("/admin/wilayah"))
+        return NextResponse.redirect(`${origin}/404`);
+      // semua halaman utama
+      if (pathname.startsWith("/admin/utama"))
+        return NextResponse.redirect(`${origin}/404`);
+      // semua halaman pungut hitung
+      if (pathname === "/admin/pungut-hitung/user-tps")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/pungut-hitung/user-tps/add")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/pungut-hitung/saintelague")
+        return NextResponse.redirect(`${origin}/404`);
+    }
+
+    // limit untuk user Relawan
+    if (verifiedToken.role === "Relawan") {
+      if (pathname === "/admin/utama/user/add")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/utama/partai")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/utama/keuangan/manajemen")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/utama/kampanye/add")
+        return NextResponse.redirect(`${origin}/404`);
+    }
+  }
 
   return NextResponse.next();
 }

@@ -34,11 +34,5 @@ yarn-error.log*
 .vercel
 
 #custom
-/public/upload
-/public/response
-/public/offline
-/public/pemberitahuan
-/public/regulasi
-/public/dip/*/
 /logs
-.auth_info_baileys
+/src/assets/Uploads

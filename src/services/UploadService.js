@@ -1,25 +1,19 @@
 import multer from "multer";
 import * as fs from "fs";
 import getLogger from "middlewares/getLogger";
+import sharp from "sharp";
+import { PATH_UPLOAD } from "constants/AppAttrs";
 
 const storage = () => {
   return multer.diskStorage({
     destination: (req, file, cb) => {
-      const dir = `./public/${req.headers.destinationfile}`;
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-      cb(null, dir);
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + "-" + file.originalname);
-    },
-  });
-};
-
-const storageFromExternal = () => {
-  return multer.diskStorage({
-    destination: (req, file, cb) => {
-      const dir = `./public/upload`;
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+      const dir = `${PATH_UPLOAD}/${req.headers.destinationfile}`;
+      try {
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      } catch (err) {
+        getLogger.error(err);
+        cb(new Error("Gagal membuat direktori."));
+      }
       cb(null, dir);
     },
     filename: (req, file, cb) => {
@@ -48,22 +42,25 @@ export const Upload = () =>
     // limits: { fileSize: 1048576 }, // hanya dibatasi 1mb
   });
 
-export const UploadPublic = () =>
+export const UploadImageOnly = () =>
   multer({
     storage: storage(),
     fileFilter: filterFile,
-    limits: { fileSize: 10485760 }, // hanya dibatasi 10mb
-  });
-
-export const UploadFromExternal = () =>
-  multer({
-    storage: storageFromExternal(),
-    fileFilter: filterFile,
-    limits: { fileSize: 10485760 }, // hanya dibatasi 10mb
+    limits: { fileSize: 5_000_000 }, // hanya dibatasi 5mb
   });
 
 function prosesDelete(path, file) {
-  if (fs.existsSync(path + "/" + file)) fs.unlinkSync(path + "/" + file);
+  const fullPath = `${path}/${file}`;
+  try {
+    if (fs.existsSync(fullPath)) {
+      fs.unlinkSync(fullPath); // Hapus file jika ada
+    } else {
+      console.log("File not found:", fullPath);
+      getLogger.error("File not found:", fullPath);
+    }
+  } catch (err) {
+    getLogger.error(err);
+  }
 }
 
 export const DeleteUpload = (path, files) => {
@@ -96,4 +93,37 @@ export const DeleteUpload = (path, files) => {
     getLogger.error(err);
     throw err;
   }
+};
+
+export const kompresingImage = (arg = false) => {
+  return async (req, res, next) => {
+    try {
+      // required
+      if (arg) {
+        if (!req.file) {
+          return res
+            .status(400)
+            .json({ message: "HARUS UPLOAD", type: "error" });
+        }
+      }
+
+      // not required
+      if (!req.file) return next();
+
+      const { path } = req.file;
+
+      // Menggunakan Sharp untuk mengecilkan ukuran gambar
+      await sharp(path)
+        .resize({ width: 800, fit: sharp.fit.inside }) // Tentukan ukuran yang diinginkan
+        .toBuffer()
+        .then((data) => {
+          fs.writeFileSync(path, data); // Menyimpan gambar yang sudah diubah
+        });
+
+      next(); // Lanjutkan dengan handler berikutnya (async (req, res) => { ... })
+    } catch (error) {
+      getLogger.error(error);
+      res.status(500).json({ message: "Terjadi Kesalahan...", type: "error" });
+    }
+  };
 };

@@ -1,12 +1,25 @@
-import PublicHandler from "middlewares/hanlderPublic";
+import handlerPublic from "middlewares/handlerPublic";
 import getLogger from "middlewares/getLogger";
 
-export default PublicHandler().get(async (req, res) => {
+export default handlerPublic().get(async (req, res) => {
   const data = {
-    EMAIL_USER: process.env.EMAIL_USER,
-    EMAIL_PASS: process.env.EMAIL_PASS,
+    HOST: process.env.HOST,
+    PORT: process.env.PORT,
+    JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
+    DB_HOST: process.env.DB_HOST,
+    DB_USER: process.env.DB_USER,
+    DB_PASS: process.env.DB_PASS,
+    DB_NAME: process.env.DB_NAME,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    PROVINSI: process.env.PROVINSI,
+    KABKOTA: process.env.KABKOTA,
+    NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST,
+    NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    NEXT_PUBLIC_PROVINSI_DEFAULT: process.env.NEXT_PUBLIC_PROVINSI_DEFAULT,
+    NEXT_PUBLIC_KABKOTA_DEFAULT: process.env.NEXT_PUBLIC_KABKOTA_DEFAULT,
+    NEXT_PUBLIC_JENIS_DCT: process.env.NEXT_PUBLIC_JENIS_DCT,
   };
 
-  getLogger.error("Coba Error");
+  getLogger.error("COba Error");
   res.json(data);
 });

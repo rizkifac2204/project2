@@ -1,9 +1,8 @@
-import db from "libs/db";
-import Handler from "middlewares/handler";
+import handler from "middlewares/handler";
 import bcrypt from "bcryptjs";
 import getLogger from "middlewares/getLogger";
 
-export default Handler().put(async (req, res) => {
+export default handler().put(async (req, res) => {
   try {
     const { id } = req.session.user;
     const { lama, baru } = req.body;
@@ -11,16 +10,22 @@ export default Handler().put(async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashBaru = bcrypt.hashSync(baru, salt);
     // cek exist
-    const cek = await db("admin").where("id", id).first();
-    if (!cek) return res.status(401).json({ message: "User Tidak Terdeteksi" });
+    const cek = await req.knex("user").where("id", id).first();
+    if (!cek)
+      return res
+        .status(401)
+        .json({ message: "User Tidak Terdeteksi", type: "error" });
 
     // jika tidak sama
     const match = await bcrypt.compare(lama, cek.password);
 
     if (!match)
-      return res.status(401).json({ message: "Password Lama Anda Salah" });
+      return res
+        .status(401)
+        .json({ message: "Password Lama Anda Salah", type: "error" });
     // proses
-    const proses = await db("admin")
+    const proses = await req
+      .knex("user")
       .where("id", id)
       .update({ password: hashBaru });
     // failed
@@ -30,6 +35,6 @@ export default Handler().put(async (req, res) => {
     res.json({ message: "Berhasil Merubah Password", type: "success" });
   } catch (error) {
     getLogger.error(error);
-    res.status(500).json({ message: "Terjadi Kesalahan..." });
+    res.status(500).json({ message: "Terjadi Kesalahan...", type: "error" });
   }
 });
