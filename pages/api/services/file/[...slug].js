@@ -1,4 +1,4 @@
-import handlerPublic from "middlewares/hanlderPublic";
+import handlerPublic from "middlewares/handlerPublic";
 import { join } from "path";
 import { createReadStream, existsSync } from "fs";
 import mime from "mime";

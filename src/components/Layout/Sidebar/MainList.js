@@ -1,9 +1,9 @@
 import { MenuItem } from "./ListItem";
 import {
   mainRoutes,
-  dipRoutes,
-  settingRoutes,
-  chartRoutes,
+  wilayahRoutes,
+  putungRoutes,
+  supportRoutes,
 } from "components/routes";
 
 export const MainList = ({ userLevel }) => {
@@ -13,23 +13,23 @@ export const MainList = ({ userLevel }) => {
   ));
 };
 
-export const SettingList = ({ userLevel }) => {
+export const WilayahList = ({ userLevel }) => {
   if (!userLevel) return <></>;
-  return settingRoutes.map((item) => (
+  return wilayahRoutes.map((item) => (
     <MenuItem key={item.title} item={item} userLevel={userLevel} />
   ));
 };
 
-export const ChartList = ({ userLevel }) => {
+export const PutungList = ({ userLevel }) => {
   if (!userLevel) return <></>;
-  return chartRoutes.map((item) => (
+  return putungRoutes.map((item) => (
     <MenuItem key={item.title} item={item} userLevel={userLevel} />
   ));
 };
 
-export const DipList = ({ userLevel }) => {
+export const SupportList = ({ userLevel }) => {
   if (!userLevel) return <></>;
-  return dipRoutes.map((item) => (
+  return supportRoutes.map((item) => (
     <MenuItem key={item.title} item={item} userLevel={userLevel} />
   ));
 };

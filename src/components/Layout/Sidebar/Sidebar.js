@@ -15,7 +15,7 @@ import ListSubheader from "@mui/material/ListSubheader";
 import { styled } from "@mui/material/styles";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 // LIST
-import { MainList, DipList, SettingList, ChartList } from "./MainList";
+import { MainList, WilayahList, PutungList, SupportList } from "./MainList";
 
 const openedMixin = (theme, close, drawerWidth) => ({
   width: close ? 0 : drawerWidth,
@@ -128,7 +128,7 @@ function Sidebar(props) {
             aria-labelledby="subheaderGeneral"
             subheader={
               <ListSubheader component="div" id="subheaderGeneral">
-                Permohonan
+                Main Menu
               </ListSubheader>
             }
           >
@@ -137,14 +137,26 @@ function Sidebar(props) {
           <Divider />
           <List
             component="nav"
-            aria-labelledby="subheaderDip"
+            aria-labelledby="subheaderGeneral"
             subheader={
-              <ListSubheader component="div" id="subheaderDiv">
-                DIP
+              <ListSubheader component="div" id="subheaderGeneral">
+                Wilayah
               </ListSubheader>
             }
           >
-            <DipList userLevel={user?.level} />
+            <WilayahList userLevel={user?.level} />
+          </List>
+          <Divider />
+          <List
+            component="nav"
+            aria-labelledby="subheaderGeneral"
+            subheader={
+              <ListSubheader component="div" id="subheaderGeneral">
+                Pungut Hitung
+              </ListSubheader>
+            }
+          >
+            <PutungList userLevel={user?.level} />
           </List>
           <Divider />
           <List
@@ -152,23 +164,11 @@ function Sidebar(props) {
             aria-labelledby="subheaderSetting"
             subheader={
               <ListSubheader component="div" id="subheaderSetting">
-                Setting
+                Support
               </ListSubheader>
             }
           >
-            <SettingList userLevel={user?.level} />
-          </List>
-          <Divider />
-          <List
-            component="nav"
-            aria-labelledby="subheaderChart"
-            subheader={
-              <ListSubheader component="div" id="subheaderChart">
-                Chart
-              </ListSubheader>
-            }
-          >
-            <ChartList userLevel={user?.level} />
+            <SupportList userLevel={user?.level} />
           </List>
         </Box>
       </PerfectScrollbar>

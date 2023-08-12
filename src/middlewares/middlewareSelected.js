@@ -1,14 +1,15 @@
 import getLogger from "middlewares/getLogger";
+import { PROVINSI, KABKOTA, KECAMATAN } from "assets/appConfig";
 
 export async function middlewareProvinsiSelected(req, res, next) {
   try {
     const { provinsi_id } = req.query;
     let blokir = false;
-    if (provinsi_id && process.env.PROVINSI) {
-      if (process.env.PROVINSI.length == 2) {
-        blokir = provinsi_id !== process.env.PROVINSI;
+    if (provinsi_id && PROVINSI) {
+      if (PROVINSI.length == 2) {
+        blokir = provinsi_id !== PROVINSI;
       } else {
-        blokir = !process.env.PROVINSI.split(",").includes(provinsi_id);
+        blokir = !PROVINSI.split(",").includes(provinsi_id);
       }
     }
     if (blokir)
@@ -20,11 +21,11 @@ export async function middlewareProvinsiSelected(req, res, next) {
       .knex("provinsi")
       .select("id")
       .modify((builder) => {
-        if (process.env.PROVINSI) {
-          if (process.env.PROVINSI.length == 2) {
-            builder.where("id", process.env.PROVINSI);
+        if (PROVINSI) {
+          if (PROVINSI.length == 2) {
+            builder.where("id", PROVINSI);
           } else {
-            builder.whereIn("id", process.env.PROVINSI.split(","));
+            builder.whereIn("id", PROVINSI.split(","));
           }
         }
       });
@@ -41,11 +42,11 @@ export async function middlewareKabkotaSelected(req, res, next) {
   try {
     const { kabkota_id } = req.query;
     let blokir = false;
-    if (kabkota_id && process.env.KABKOTA) {
-      if (process.env.KABKOTA.length == 4) {
-        blokir = kabkota_id !== process.env.KABKOTA;
+    if (kabkota_id && KABKOTA) {
+      if (KABKOTA.length == 4) {
+        blokir = kabkota_id !== KABKOTA;
       } else {
-        blokir = !process.env.KABKOTA.split(",").includes(kabkota_id);
+        blokir = !KABKOTA.split(",").includes(kabkota_id);
       }
     }
     if (blokir)
@@ -57,11 +58,11 @@ export async function middlewareKabkotaSelected(req, res, next) {
       .knex("kabkota")
       .select("id")
       .modify((builder) => {
-        if (process.env.KABKOTA) {
-          if (process.env.KABKOTA.length == 4) {
-            builder.where("id", process.env.KABKOTA);
+        if (KABKOTA) {
+          if (KABKOTA.length == 4) {
+            builder.where("id", KABKOTA);
           } else {
-            builder.whereIn("id", process.env.KABKOTA.split(","));
+            builder.whereIn("id", KABKOTA.split(","));
           }
         }
       })
@@ -79,11 +80,11 @@ export async function middlewareKecamatanSelected(req, res, next) {
   try {
     const { kecamatan_id } = req.query;
     let blokir = false;
-    if (kecamatan_id && process.env.KECAMATAN) {
-      if (process.env.KECAMATAN.length == 6) {
-        blokir = kecamatan_id !== process.env.KECAMATAN;
+    if (kecamatan_id && KECAMATAN) {
+      if (KECAMATAN.length == 6) {
+        blokir = kecamatan_id !== KECAMATAN;
       } else {
-        blokir = !process.env.KECAMATAN.split(",").includes(kecamatan_id);
+        blokir = !KECAMATAN.split(",").includes(kecamatan_id);
       }
     }
     if (blokir)
@@ -95,11 +96,11 @@ export async function middlewareKecamatanSelected(req, res, next) {
       .knex("kecamatan")
       .select("id")
       .modify((builder) => {
-        if (process.env.KECAMATAN) {
-          if (process.env.KECAMATAN.length == 6) {
-            builder.where("id", process.env.KECAMATAN);
+        if (KECAMATAN) {
+          if (KECAMATAN.length == 6) {
+            builder.where("id", KECAMATAN);
           } else {
-            builder.whereIn("id", process.env.KECAMATAN.split(","));
+            builder.whereIn("id", KECAMATAN.split(","));
           }
         }
       })

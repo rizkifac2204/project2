@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { setUserCookie } from "libs/auth";
-import handlerPublic from "middlewares/hanlderPublic";
+import handlerPublic from "middlewares/handlerPublic";
 
 export default handlerPublic().post(async (req, res) => {
   try {

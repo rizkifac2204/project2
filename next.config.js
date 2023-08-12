@@ -6,7 +6,6 @@ const nextConfig = {
     NEXT_PUBLIC_PROVINSI_DEFAULT: process.env.PROVINSI,
     NEXT_PUBLIC_KABKOTA_DEFAULT: process.env.KABKOTA,
     NEXT_PUBLIC_TYNI_MCE_API: process.env.TYNI_MCE_API,
-    NEXT_PUBLIC_JENIS_DCT: process.env.JENIS_DCT || [],
   },
   reactStrictMode: true,
 };

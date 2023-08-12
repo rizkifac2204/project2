@@ -171,40 +171,6 @@ function ProfileSetting() {
           <ProfileFormPassword />
         </Box>
       </TabPanel>
-
-      {/* <Grid container spacing={1}>
-        <Grid item xs={12} md={3}></Grid>
-        <Grid item xs={12} md={9}>
-          <Box display="flex" flexDirection="column">
-            <Box mb={3}>
-              <CardUserUmum
-                data={profile}
-                url={`/api/profile`}
-                queryKey={["profile", "umum"]}
-              />
-            </Box>
-            <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <CardUserBadan
-                    data={profile}
-                    url={`/api/profile/badan`}
-                    queryKey={["profile", "badan"]}
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  {" "}
-                  <CardUserNomor
-                    data={profile}
-                    url={`/api/profile/nomor`}
-                    queryKey={["profile", "nomor"]}
-                  />
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid> */}
     </>
   );
 }

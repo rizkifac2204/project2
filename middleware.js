@@ -13,38 +13,39 @@ export default async function middleware(req, res) {
     // console.log(err);
   });
 
+  if (pathname === "/login") return NextResponse.redirect(`${origin}/`);
+
   if (pathname === "/")
     if (verifiedToken) return NextResponse.redirect(`${origin}/admin`);
 
   if (pathname.startsWith("/admin")) {
-    if (!verifiedToken) return NextResponse.redirect(`${origin}/login`);
+    if (!verifiedToken) return NextResponse.redirect(`${origin}/`);
+
+    // limit untuk user Relawan
+    if (verifiedToken.role === "Relawan") {
+      if (pathname === "/admin/main/user/add")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/main/caleg/add")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/main/wilayah")
+        return NextResponse.redirect(`${origin}/404`);
+      if (pathname === "/admin/pungut-hitung/sainte-lague")
+        return NextResponse.redirect(`${origin}/404`);
+    }
 
     // limit untuk user TPS
-    if (verifiedToken.role === "TPS") {
-      // halaman wilayah
-      if (pathname.startsWith("/admin/wilayah"))
+    if (verifiedToken.role === "Relawan") {
+      if (pathname.startsWith("/admin/main"))
         return NextResponse.redirect(`${origin}/404`);
-      // semua halaman utama
-      if (pathname.startsWith("/admin/utama"))
+      if (pathname === "/admin/wilayah")
         return NextResponse.redirect(`${origin}/404`);
-      // semua halaman pungut hitung
       if (pathname === "/admin/pungut-hitung/user-tps")
         return NextResponse.redirect(`${origin}/404`);
       if (pathname === "/admin/pungut-hitung/user-tps/add")
         return NextResponse.redirect(`${origin}/404`);
-      if (pathname === "/admin/pungut-hitung/saintelague")
+      if (pathname === "/admin/pungut-hitung/user-tps/generate")
         return NextResponse.redirect(`${origin}/404`);
-    }
-
-    // limit untuk user Relawan
-    if (verifiedToken.role === "Relawan") {
-      if (pathname === "/admin/utama/user/add")
-        return NextResponse.redirect(`${origin}/404`);
-      if (pathname === "/admin/utama/partai")
-        return NextResponse.redirect(`${origin}/404`);
-      if (pathname === "/admin/utama/keuangan/manajemen")
-        return NextResponse.redirect(`${origin}/404`);
-      if (pathname === "/admin/utama/kampanye/add")
+      if (pathname === "/admin/pungut-hitung/sainte-lague")
         return NextResponse.redirect(`${origin}/404`);
     }
   }

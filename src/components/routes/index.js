@@ -1,19 +1,16 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
-import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
-import PanToolIcon from "@mui/icons-material/PanTool";
-import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
-import PeopleIcon from "@mui/icons-material/People";
-import HomeWorkIcon from "@mui/icons-material/HomeWork";
-import AutoDeleteIcon from "@mui/icons-material/AutoDelete";
-import BarChartIcon from "@mui/icons-material/BarChart";
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import AddIcon from "@mui/icons-material/Add";
-import BubbleChartIcon from "@mui/icons-material/BubbleChart";
-import DataSaverOnIcon from "@mui/icons-material/DataSaverOn";
-import GavelIcon from "@mui/icons-material/Gavel";
-import ClassIcon from "@mui/icons-material/Class";
+import Groups3OutlinedIcon from "@mui/icons-material/Groups3Outlined";
+import FlagCircleOutlinedIcon from "@mui/icons-material/FlagCircleOutlined";
+import SensorOccupiedOutlinedIcon from "@mui/icons-material/SensorOccupiedOutlined";
+import PinDropOutlinedIcon from "@mui/icons-material/PinDropOutlined";
+import EventSeatOutlinedIcon from "@mui/icons-material/EventSeatOutlined";
+import MotionPhotosAutoOutlinedIcon from "@mui/icons-material/MotionPhotosAutoOutlined";
+import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
+import DocumentScannerOutlinedIcon from "@mui/icons-material/DocumentScannerOutlined";
+import SpeakerNotesOutlinedIcon from "@mui/icons-material/SpeakerNotesOutlined";
+import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 
 export const mainRoutes = [
   {
@@ -22,140 +19,137 @@ export const mainRoutes = [
     icon: <DashboardIcon />,
   },
   {
-    title: "Permohonan",
-    icon: <AutoAwesomeMotionIcon />,
+    title: "User",
+    icon: <Groups3OutlinedIcon />,
     children: [
       {
-        title: "Data",
-        path: "/admin/permohonan",
+        title: "Data User",
+        path: "/admin/main/user",
         icon: <DataArrayIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3, 4],
       },
       {
-        title: "Tambah",
-        path: "/admin/permohonan/add",
+        title: "Tambah User",
+        path: "/admin/main/user/add",
         icon: <AddIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3],
       },
     ],
   },
   {
-    title: "Survey",
-    icon: <AnalyticsIcon />,
+    title: "Partai",
+    path: "/admin/main/partai",
+    icon: <FlagCircleOutlinedIcon />,
+    limit: [1, 2, 3, 4],
+  },
+  {
+    title: "Caleg",
+    icon: <SensorOccupiedOutlinedIcon />,
     children: [
       {
-        title: "Data",
-        path: "/admin/survey",
+        title: "Data Caleg",
+        path: "/admin/main/caleg",
         icon: <DataArrayIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3, 4],
       },
       {
-        title: "Chart",
-        path: "/admin/survey/chart",
-        icon: <BubbleChartIcon sx={{ fontSize: 12 }} />,
-      },
-    ],
-  },
-  {
-    title: "Keberatan",
-    path: "/admin/keberatan",
-    icon: <PanToolIcon />,
-  },
-  {
-    title: "Subscriber",
-    icon: <ConnectWithoutContactIcon />,
-    children: [
-      {
-        title: "Data Subscriber",
-        path: "/admin/subscriber",
-        icon: <ArrowRightIcon />,
-      },
-      {
-        title: "Email",
-        path: "/admin/subscriber/email",
-        icon: <ArrowRightIcon />,
+        title: "Tambah Caleg",
+        path: "/admin/main/caleg/add",
+        icon: <AddIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3],
       },
     ],
   },
 ];
 
-export const dipRoutes = [
+export const wilayahRoutes = [
   {
-    title: "DIP",
-    icon: <DataSaverOnIcon />,
+    title: "Wilayah",
+    path: "/admin/wilayah",
+    icon: <PinDropOutlinedIcon />,
+    limit: [1, 2, 3],
+  },
+];
+
+export const putungRoutes = [
+  {
+    title: "User TPS",
+    icon: <Groups3OutlinedIcon />,
     children: [
       {
-        title: "Data",
-        path: "/admin/dip",
+        title: "Data User TPS",
+        path: "/admin/pungut-hitung/user-tps",
         icon: <DataArrayIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3, 4],
       },
       {
-        title: "Tambah",
-        path: "/admin/dip/add",
+        title: "Tambah User",
+        path: "/admin/pungut-hitung/user-tps/add",
         icon: <AddIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3, 4],
+      },
+      {
+        title: "Generate User",
+        path: "/admin/pungut-hitung/user-tps/generate",
+        icon: <MotionPhotosAutoOutlinedIcon sx={{ fontSize: 12 }} />,
+        limit: [1, 2, 3, 4],
+      },
+    ],
+  },
+  {
+    title: "Sante Lague",
+    path: "/admin/pungut-hitung/sainte-lague",
+    icon: <EventSeatOutlinedIcon />,
+    limit: [1, 2, 3],
+  },
+  {
+    title: "Formulir",
+    icon: <TextSnippetOutlinedIcon />,
+    children: [
+      {
+        title: "C-Hasil DPR",
+        path: "/admin/pungut-hitung/formulir/dpr",
+        icon: <DocumentScannerOutlinedIcon sx={{ fontSize: 12 }} />,
+      },
+      {
+        title: "C-Hasil DPR",
+        path: "/admin/pungut-hitung/formulir/dpd",
+        icon: <DocumentScannerOutlinedIcon sx={{ fontSize: 12 }} />,
+      },
+      {
+        title: "C-Hasil DPRD Provinsi",
+        path: "/admin/pungut-hitung/formulir/dprd-provinsi",
+        icon: <DocumentScannerOutlinedIcon sx={{ fontSize: 12 }} />,
+      },
+      {
+        title: "C-Hasil DPRD Kabupaten/Kota",
+        path: "/admin/pungut-hitung/formulir/dprd-kabkota",
+        icon: <DocumentScannerOutlinedIcon sx={{ fontSize: 12 }} />,
+      },
+      {
+        title: "C-Hasil Presiden",
+        path: "/admin/pungut-hitung/formulir/presiden",
+        icon: <DocumentScannerOutlinedIcon sx={{ fontSize: 12 }} />,
       },
     ],
   },
 ];
 
-export const settingRoutes = [
+export const supportRoutes = [
   {
-    title: "Users",
-    icon: <PeopleIcon />,
+    title: "Catatan",
+    icon: <SpeakerNotesOutlinedIcon />,
     children: [
       {
-        title: "Data",
-        path: "/admin/setting/users",
-        icon: <DataArrayIcon sx={{ fontSize: 12 }} />,
+        title: "Catatan Pribadi",
+        path: "/admin/support/notes",
+        icon: <CommentOutlinedIcon sx={{ fontSize: 12 }} />,
       },
       {
-        title: "Tambah",
-        path: "/admin/setting/users/add",
-        icon: <AddIcon sx={{ fontSize: 12 }} />,
-        limit: [1, 2],
+        title: "Catatan Publik",
+        path: "/admin/support/notes/publik",
+        icon: <CommentOutlinedIcon sx={{ fontSize: 12 }} />,
       },
     ],
-  },
-  {
-    title: "Profile Bawaslu",
-    path: "/admin/setting/wilayah",
-    icon: <HomeWorkIcon />,
-  },
-  {
-    title: "Dibuang",
-    path: "/admin/setting/trash",
-    icon: <AutoDeleteIcon />,
-  },
-  {
-    title: "Regulasi",
-    icon: <GavelIcon />,
-    children: [
-      {
-        title: "Data",
-        path: "/admin/setting/regulasi",
-        icon: <DataArrayIcon sx={{ fontSize: 12 }} />,
-      },
-      {
-        title: "Tambah",
-        path: "/admin/setting/regulasi/add",
-        icon: <AddIcon sx={{ fontSize: 12 }} />,
-        limit: [1],
-      },
-      {
-        title: "Kategori",
-        path: "/admin/setting/regulasi/kategori",
-        icon: <ClassIcon sx={{ fontSize: 12 }} />,
-      },
-    ],
-  },
-];
-
-export const chartRoutes = [
-  {
-    title: "Layanan",
-    path: "/admin/chart/layanan",
-    icon: <BarChartIcon />,
-  },
-  {
-    title: "Unit",
-    path: "/admin/chart/unit",
-    icon: <BarChartIcon />,
   },
 ];

@@ -15,9 +15,6 @@ export default handlerPublic().get(async (req, res) => {
     KABKOTA: process.env.KABKOTA,
     NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST,
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    NEXT_PUBLIC_PROVINSI_DEFAULT: process.env.NEXT_PUBLIC_PROVINSI_DEFAULT,
-    NEXT_PUBLIC_KABKOTA_DEFAULT: process.env.NEXT_PUBLIC_KABKOTA_DEFAULT,
-    NEXT_PUBLIC_JENIS_DCT: process.env.NEXT_PUBLIC_JENIS_DCT,
   };
 
   getLogger.error("COba Error");
