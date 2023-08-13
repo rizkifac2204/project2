@@ -1,5 +1,8 @@
 import getLogger from "middlewares/getLogger";
-import { PROVINSI, KABKOTA, KECAMATAN } from "assets/appConfig";
+
+const PROVINSI = process.env.PROVINSI;
+const KABKOTA = process.env.KABKOTA;
+const KECAMATAN = process.env.KECAMATAN;
 
 export async function middlewareProvinsiSelected(req, res, next) {
   try {

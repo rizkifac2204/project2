@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { verifyAuth } from "libs/auth";
 
 export const config = {
-  matcher: ["/(admin.*)", "/"],
+  matcher: ["/(admin.*)", "/", "/login"],
 };
 
 export default async function middleware(req, res) {

@@ -1,6 +1,5 @@
 import handler from "middlewares/handler";
 import getLogger from "middlewares/getLogger";
-import { JENIS_DCT } from "assets/appConfig";
 
 export default handler()
   .get(async (req, res) => {
@@ -8,7 +7,7 @@ export default handler()
       const { jenis } = req.query;
 
       if (jenis) {
-        const existJenis = JENIS_DCT.split(",").includes(jenis);
+        const existJenis = process.env.JENIS_DCT.split(",").includes(jenis);
         if (!existJenis)
           return res.status(400).json({
             message: "Terjadi Kesalahan",

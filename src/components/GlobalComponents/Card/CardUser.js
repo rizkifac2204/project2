@@ -1,4 +1,3 @@
-import { makeStyles } from "@mui/styles";
 import { Typography, Fab, Box, Divider } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import Link from "next/link";
@@ -21,27 +20,6 @@ import Wait from "components/GlobalComponents/Wait";
 import Thumb from "components/GlobalComponents/Thumb";
 import FotoAction from "components/GlobalComponents/FotoAction";
 
-const useStyles = makeStyles((theme) => ({
-  fab: {
-    boxShadow: "none",
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  socialIcons: {
-    "& a": {
-      fontSize: 32,
-      marginLeft: "5px",
-      marginRight: "5px",
-      "&:first-child": {
-        marginLeft: 0,
-      },
-      "&:last-child": {
-        marginRight: 0,
-      },
-    },
-  },
-}));
-
 function CardUser({
   data,
   deleteCallback,
@@ -50,8 +28,6 @@ function CardUser({
   isFotoAction,
   linkDetail,
 }) {
-  const classes = useStyles();
-
   const {
     data: alamat,
     isError,
@@ -77,7 +53,7 @@ function CardUser({
         })
         .catch((err) => {
           console.log(err);
-          deleteCallback().onError(err.response.data);
+          deleteCallback().onError(err?.response?.data);
         });
     }
   }
@@ -109,10 +85,9 @@ function CardUser({
         >
           {data.level}
         </Box>
-        <Box>
+        <Box display="flex" justifyContent="space-between">
           {data?.myself ? (
             <Fab
-              className={classes.fab}
               size="small"
               aria-label="detail"
               component={Link}
@@ -122,7 +97,6 @@ function CardUser({
             </Fab>
           ) : (
             <Fab
-              className={classes.fab}
               size="small"
               aria-label="detail"
               component={Link}
@@ -135,7 +109,6 @@ function CardUser({
           {data?.editable && !data?.myself && (
             <>
               <Fab
-                className={classes.fab}
                 size="small"
                 aria-label="Edit"
                 component={Link}
@@ -143,19 +116,13 @@ function CardUser({
               >
                 <EditOutlinedIcon />
               </Fab>
-              <Fab
-                className={classes.fab}
-                size="small"
-                aria-label="delete"
-                onClick={handleDeleteClick}
-              >
+              <Fab size="small" aria-label="delete" onClick={handleDeleteClick}>
                 <DeleteOutlineOutlinedIcon color="primary" />
               </Fab>
             </>
           )}
 
           <Fab
-            className={classes.fab}
             size="small"
             aria-label="telp"
             disabled={!data.telp}
@@ -165,7 +132,6 @@ function CardUser({
             <LocalPhoneOutlinedIcon />
           </Fab>
           <Fab
-            className={classes.fab}
             size="small"
             aria-label="email"
             disabled={!data.email}

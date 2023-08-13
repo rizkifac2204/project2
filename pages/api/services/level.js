@@ -6,6 +6,7 @@ export default handler().get(async (req, res) => {
     .knex("level")
     .modify((builder) => {
       if (level === 1) return;
+      if (level === 2) return builder.where("id", ">", level);
       if (verifikator) return builder.where("id", ">=", level);
       return builder.where("id", ">", level);
     })

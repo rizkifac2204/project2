@@ -74,7 +74,6 @@ function Profile() {
                   />
                 </Grid>
                 <Grid item xs={12} md={6}>
-                  {" "}
                   <CardUserNomor
                     data={profile}
                     url={`/api/profile/nomor`}
