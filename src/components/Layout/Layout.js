@@ -1,6 +1,6 @@
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import PerfectScrollbar from "react-perfect-scrollbar";
 // MUI
-import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
@@ -95,7 +95,7 @@ export default function Layout({ children }) {
             <Box
               component="main"
               sx={{
-                p: 1,
+                py: 1,
                 backgroundColor: (theme) =>
                   theme.palette.mode === "light"
                     ? theme.palette.grey[100]
@@ -105,12 +105,12 @@ export default function Layout({ children }) {
                 overflow: "auto",
               }}
             >
-              {/* <PerfectScrollbar options={{ suppressScrollX: true }}> */}
-              <Toolbar />
-              <BreadcrumbsHead list={children.type.breadcrumb} />
-              <Container maxWidth={false}>{children}</Container>
-              <Footer />
-              {/* </PerfectScrollbar> */}
+              <PerfectScrollbar options={{ suppressScrollX: true }}>
+                <Toolbar />
+                <BreadcrumbsHead list={children.type.breadcrumb} />
+                {children}
+                <Footer />
+              </PerfectScrollbar>
             </Box>
 
             <DrawerSetting

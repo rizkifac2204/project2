@@ -13,6 +13,8 @@ import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Alert from "@mui/material/Alert";
 
+import SmallTitleBar from "components/GlobalComponents/PageTitleBar/SmallTitleBar";
+
 import CardUser from "components/GlobalComponents/Card/CardUser";
 import CardUserUmum from "components/GlobalComponents/Card/CardUserUmum";
 import CardUserBadan from "components/GlobalComponents/Card/CardUserBadan";
@@ -68,49 +70,50 @@ function UserView() {
       <Head>
         <title>{`Detail User -  ${appConfig.brandName}`}</title>
       </Head>
-      <Container maxWidth={false}>
-        <Box className="page-space">
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={3}>
-              <CardUser
-                data={user}
-                deleteCallback={deleteCallback}
-                url={`/api/user/${user.id}`}
-                queryKey={["user", user.id, "alamat"]}
-                linkDetail={`/admin/main/user`}
-              />
-            </Grid>
-            <Grid item xs={12} md={9}>
-              <Box display="flex" flexDirection="column">
-                <Box mb={3}>
-                  <CardUserUmum
-                    data={user}
-                    url={`/api/user/${user.id}`}
-                    queryKey={["user", user.id, "umum"]}
-                  />
-                </Box>
-                <Box>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
-                      <CardUserBadan
-                        data={user}
-                        url={`/api/user/${user.id}/badan`}
-                        queryKey={["user", user.id, "badan"]}
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <CardUserNomor
-                        data={user}
-                        url={`/api/user/${user.id}/nomor`}
-                        queryKey={["user", user.id, "nomor"]}
-                      />
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-            </Grid>
+
+      <SmallTitleBar title={`Detail ${user?.nama}`} />
+
+      <Container>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3}>
+            <CardUser
+              data={user}
+              deleteCallback={deleteCallback}
+              url={`/api/user/${user.id}`}
+              queryKey={["user", user.id, "alamat"]}
+              linkDetail={`/admin/main/user`}
+            />
           </Grid>
-        </Box>
+          <Grid item xs={12} md={9}>
+            <Box display="flex" flexDirection="column">
+              <Box mb={3}>
+                <CardUserUmum
+                  data={user}
+                  url={`/api/user/${user.id}`}
+                  queryKey={["user", user.id, "umum"]}
+                />
+              </Box>
+              <Box>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <CardUserBadan
+                      data={user}
+                      url={`/api/user/${user.id}/badan`}
+                      queryKey={["user", user.id, "badan"]}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <CardUserNomor
+                      data={user}
+                      url={`/api/user/${user.id}/nomor`}
+                      queryKey={["user", user.id, "nomor"]}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );

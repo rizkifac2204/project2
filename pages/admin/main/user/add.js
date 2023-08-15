@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 // components
+import SmallTitleBar from "components/GlobalComponents/PageTitleBar/SmallTitleBar";
 import FormUserAdd from "components/User/Form/FormUserAdd";
 // import SmallTitleBar from "components/GlobalComponents/PageTitleBar/SmallTitleBar";
 import CustomCard from "components/GlobalComponents/Card/CustomCard";
@@ -15,16 +16,15 @@ function UserAdd() {
       <Head>
         <title>{`Tambah User - ${AppConfig.brandName}`}</title>
       </Head>
-      <div>
-        {/* <SmallTitleBar title="Tambah Data User" /> */}
-        <Container maxWidth="lg">
-          <Box className="page-space">
-            <CustomCard>
-              <FormUserAdd />
-            </CustomCard>
-          </Box>
-        </Container>
-      </div>
+
+      <SmallTitleBar title="Tambah Data User" />
+      <Container maxWidth="lg">
+        <Box className="page-space">
+          <CustomCard>
+            <FormUserAdd />
+          </CustomCard>
+        </Box>
+      </Container>
     </>
   );
 }

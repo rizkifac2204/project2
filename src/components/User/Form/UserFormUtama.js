@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import FormHelperText from "@mui/material/FormHelperText";
-import { makeStyles } from "@mui/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -17,27 +16,6 @@ import Checkbox from "@mui/material/Checkbox";
 // components
 import Thumb from "components/GlobalComponents/Thumb";
 import ContentLayout from "components/GlobalComponents/ContentLayout";
-
-const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-  profileThumb: {
-    "& >div": {
-      "& >div": {
-        "& >div:first-child": {
-          alignSelf: "center",
-        },
-      },
-    },
-  },
-  fileUpload: {
-    "& input": {
-      height: "auto",
-    },
-  },
-}));
 
 const validationSchema = yup.object({
   nama: yup.string("Masukan Nama").required("Harus Diisi"),
@@ -116,7 +94,6 @@ const handleSubmit = (values, setSubmitting, mutate, refetch) => {
 };
 
 function UserFormUtama({ user, refetch }) {
-  const classes = useStyles();
   const { mutate } = useHandleSubmitMutation(user);
 
   const formik = useFormik({
@@ -151,7 +128,7 @@ function UserFormUtama({ user, refetch }) {
     <div className="hk-general-settings">
       <form onSubmit={formik.handleSubmit}>
         {/* input foto  */}
-        <Box mb={3} className={classes.profileThumb}>
+        <Box mb={3}>
           <ContentLayout title="Foto">
             {!formik.values.delete_foto ? (
               <>
@@ -172,7 +149,6 @@ function UserFormUtama({ user, refetch }) {
                       type="file"
                       id="file"
                       name="file"
-                      className={classes.fileUpload}
                       onBlur={formik.handleBlur}
                       onChange={(event) => {
                         formik.setFieldValue(
