@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 // components
 import SmallTitleBar from "components/GlobalComponents/PageTitleBar/SmallTitleBar";
 import FormUserAdd from "components/User/Form/FormUserAdd";
-// import SmallTitleBar from "components/GlobalComponents/PageTitleBar/SmallTitleBar";
 import CustomCard from "components/GlobalComponents/Card/CustomCard";
 
 function UserAdd() {
@@ -18,6 +17,7 @@ function UserAdd() {
       </Head>
 
       <SmallTitleBar title="Tambah Data User" />
+
       <Container maxWidth="lg">
         <Box className="page-space">
           <CustomCard>

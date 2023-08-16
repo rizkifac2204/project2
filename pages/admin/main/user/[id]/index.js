@@ -73,7 +73,7 @@ function UserView() {
 
       <SmallTitleBar title={`Detail ${user?.nama}`} />
 
-      <Container>
+      <Container maxWidth={false}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
             <CardUser

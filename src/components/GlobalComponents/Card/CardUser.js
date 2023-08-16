@@ -85,7 +85,7 @@ function CardUser({
         >
           {data.level}
         </Box>
-        <Box display="flex" justifyContent="space-between">
+        <Box display="flex" justifyContent="space-around">
           {data?.myself ? (
             <Fab
               size="small"

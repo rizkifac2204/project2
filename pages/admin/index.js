@@ -41,159 +41,161 @@ function Dashboard() {
 
       {isFetchingMain && <LinearProgress />}
 
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <AlertInfo />
-        </Grid>
+      <Box sx={{ mx: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <AlertInfo />
+          </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardContent>
-                <Typography component="div" variant="h5">
-                  {main?.jumlahUser}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                  Pengguna
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Link href="/admin/setting/users">
-                  <SettingsSuggestIcon
-                    color="secondary"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Link>
-              </CardActions>
-            </Box>
-            <Box
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Card
               sx={{
                 display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
+                justifyContent: "space-between",
               }}
             >
-              <PeopleIcon color="info" sx={{ fontSize: 120 }} />
-            </Box>
-          </Card>
-        </Grid>
+              <Box>
+                <CardContent>
+                  <Typography component="div" variant="h5">
+                    {main?.jumlahUser}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    Pengguna
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link href="/admin/setting/users">
+                    <SettingsSuggestIcon
+                      color="secondary"
+                      sx={{ cursor: "pointer" }}
+                    />
+                  </Link>
+                </CardActions>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignContent: "center",
+                }}
+              >
+                <PeopleIcon color="info" sx={{ fontSize: 120 }} />
+              </Box>
+            </Card>
+          </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardContent>
-                <Typography component="div" variant="h5">
-                  {main?.jumlahPemilih}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                  Pemilih
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Link href="/admin/dip">
-                  <SettingsSuggestIcon
-                    color="secondary"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Link>
-              </CardActions>
-            </Box>
-            <Box
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Card
               sx={{
                 display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
+                justifyContent: "space-between",
               }}
             >
-              <DataSaverOnIcon color="primary" sx={{ fontSize: 120 }} />
-            </Box>
-          </Card>
-        </Grid>
+              <Box>
+                <CardContent>
+                  <Typography component="div" variant="h5">
+                    {main?.jumlahPemilih}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    Pemilih
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link href="/admin/dip">
+                    <SettingsSuggestIcon
+                      color="secondary"
+                      sx={{ cursor: "pointer" }}
+                    />
+                  </Link>
+                </CardActions>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignContent: "center",
+                }}
+              >
+                <DataSaverOnIcon color="primary" sx={{ fontSize: 120 }} />
+              </Box>
+            </Card>
+          </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardContent>
-                <Typography component="div" variant="h5">
-                  {main?.jumlahTps}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                  TPS
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Link href="/admin/survey">
-                  <SettingsSuggestIcon
-                    color="secondary"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Link>
-              </CardActions>
-            </Box>
-            <Box
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Card
               sx={{
                 display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
+                justifyContent: "space-between",
               }}
             >
-              <DynamicFormIcon color="warning" sx={{ fontSize: 120 }} />
-            </Box>
-          </Card>
-        </Grid>
+              <Box>
+                <CardContent>
+                  <Typography component="div" variant="h5">
+                    {main?.jumlahTps}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    TPS
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link href="/admin/survey">
+                    <SettingsSuggestIcon
+                      color="secondary"
+                      sx={{ cursor: "pointer" }}
+                    />
+                  </Link>
+                </CardActions>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignContent: "center",
+                }}
+              >
+                <DynamicFormIcon color="warning" sx={{ fontSize: 120 }} />
+              </Box>
+            </Card>
+          </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Card
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box>
-              <CardContent>
-                <Typography component="div" variant="h5">
-                  {main?.jumlahPartai}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary">
-                  Partai
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Link href="/admin/keberatan">
-                  <SettingsSuggestIcon
-                    color="secondary"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Link>
-              </CardActions>
-            </Box>
-            <Box
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <Card
               sx={{
                 display: "flex",
-                flexWrap: "wrap",
-                alignContent: "center",
+                justifyContent: "space-between",
               }}
             >
-              <FlagOutlinedIcon color="error" sx={{ fontSize: 120 }} />
-            </Box>
-          </Card>
+              <Box>
+                <CardContent>
+                  <Typography component="div" variant="h5">
+                    {main?.jumlahPartai}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary">
+                    Partai
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Link href="/admin/keberatan">
+                    <SettingsSuggestIcon
+                      color="secondary"
+                      sx={{ cursor: "pointer" }}
+                    />
+                  </Link>
+                </CardActions>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignContent: "center",
+                }}
+              >
+                <FlagOutlinedIcon color="error" sx={{ fontSize: 120 }} />
+              </Box>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </>
   );
 }
