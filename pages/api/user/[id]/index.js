@@ -1,6 +1,6 @@
 import handler from "middlewares/handler";
 import getLogger from "middlewares/getLogger";
-import { DeleteUpload } from "services/UploadService";
+import { DeleteUpload } from "services/uploadService";
 import { isEditable, isMyself } from "middlewares/userAttrs";
 import middlewareUser from "middlewares/middlewareUser";
 import { PATH_FOTO } from "assets/appConfig";

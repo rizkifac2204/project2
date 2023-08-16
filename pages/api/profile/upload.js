@@ -4,7 +4,7 @@ import {
   UploadImageOnly,
   DeleteUpload,
   kompresingImage,
-} from "services/UploadService";
+} from "services/uploadService";
 import { PATH_FOTO } from "assets/appConfig";
 
 export const config = {

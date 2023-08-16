@@ -3,7 +3,7 @@ import getLogger from "middlewares/getLogger";
 import { DeleteUpload } from "services/uploadService";
 import { isEditable, isMyself } from "middlewares/userAttrs";
 import middlewareUserTps from "middlewares/middlewareUserTps";
-import { PATH_FOTO } from "constants/AppAttrs";
+import { PATH_FOTO } from "assets/appConfig";
 
 async function middlewareEdit(req, res, next) {
   try {

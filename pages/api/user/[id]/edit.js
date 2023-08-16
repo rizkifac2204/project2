@@ -4,7 +4,7 @@ import {
   UploadImageOnly,
   DeleteUpload,
   kompresingImage,
-} from "services/UploadService";
+} from "services/uploadService";
 import { isEditable, isMyself } from "middlewares/userAttrs";
 const fs = require("fs");
 import { PATH_FOTO } from "assets/appConfig";
