@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 // MUI
 import LinearProgress from "@mui/material/LinearProgress";
+import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -41,7 +42,7 @@ function Dashboard() {
 
       {isFetchingMain && <LinearProgress />}
 
-      <Box sx={{ mx: 3 }}>
+      <Container maxWidth={false}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <AlertInfo />
@@ -195,7 +196,7 @@ function Dashboard() {
             </Card>
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </>
   );
 }

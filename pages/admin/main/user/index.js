@@ -186,56 +186,55 @@ function User() {
       </Head>
       <Container maxWidth={false}>
         {isLoadingDelete && <LinearProgress sx={{ height: "4px" }} />}
-        <Box className="page-space">
-          <Grid container spacing={2}>
-            <Grid item lg={3}>
-              {Object.keys(detail).length !== 0 ? (
-                <Box pt={3} sx={{ display: { xs: "none", lg: "block" } }}>
-                  <CardUser
-                    data={detail}
-                    deleteCallback={deleteCallback}
-                    url={`/api/user/${detail.id}`}
-                    queryKey={["user", detail.id, "alamat"]}
-                    linkDetail={`/admin/main/user`}
-                  />
-                </Box>
-              ) : null}
-            </Grid>
-            <Grid item xs={12} lg={9}>
-              <CustomCard>
-                <DataGrid
-                  autoHeight
-                  slots={{
-                    toolbar: CustomToolbar,
-                  }}
-                  slotProps={{
-                    toolbar: {
-                      multiSearch: true,
-                    },
-                  }}
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 10,
-                      },
-                    },
-                    filter: {
-                      filterModel: {
-                        items: [],
-                        quickFilterLogicOperator: GridLogicOperator.Or,
-                      },
-                    },
-                  }}
-                  pageSizeOptions={[10, 20, 30, 50]}
-                  loading={isLoading}
-                  rows={users ? users : []}
-                  columns={columns}
-                  onRowClick={({ row }) => setDetail(row)}
+
+        <Grid container spacing={2}>
+          <Grid item lg={3}>
+            {Object.keys(detail).length !== 0 ? (
+              <Box pt={3} sx={{ display: { xs: "none", lg: "block" } }}>
+                <CardUser
+                  data={detail}
+                  deleteCallback={deleteCallback}
+                  url={`/api/user/${detail.id}`}
+                  queryKey={["user", detail.id, "alamat"]}
+                  linkDetail={`/admin/main/user`}
                 />
-              </CustomCard>
-            </Grid>
+              </Box>
+            ) : null}
           </Grid>
-        </Box>
+          <Grid item xs={12} lg={9}>
+            <CustomCard>
+              <DataGrid
+                autoHeight
+                slots={{
+                  toolbar: CustomToolbar,
+                }}
+                slotProps={{
+                  toolbar: {
+                    multiSearch: true,
+                  },
+                }}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 10,
+                    },
+                  },
+                  filter: {
+                    filterModel: {
+                      items: [],
+                      quickFilterLogicOperator: GridLogicOperator.Or,
+                    },
+                  },
+                }}
+                pageSizeOptions={[10, 20, 30, 50]}
+                loading={isLoading}
+                rows={users ? users : []}
+                columns={columns}
+                onRowClick={({ row }) => setDetail(row)}
+              />
+            </CustomCard>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );

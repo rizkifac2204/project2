@@ -47,6 +47,7 @@ function Profile() {
       <Head>
         <title>{`Profile - ${AppConfig.brandName}`}</title>
       </Head>
+
       <Container maxWidth={false}>
         <Grid container spacing={1}>
           <Grid item xs={12} md={3}>
