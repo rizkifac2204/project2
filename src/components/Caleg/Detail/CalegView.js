@@ -38,7 +38,6 @@ function CalegView({ caleg, handleDeleteClick }) {
         </Box>
 
         <Fab
-          className={classes.fab}
           size="small"
           aria-label="Edit"
           component={Link}
@@ -46,12 +45,7 @@ function CalegView({ caleg, handleDeleteClick }) {
         >
           <EditOutlinedIcon />
         </Fab>
-        <Fab
-          className={classes.fab}
-          size="small"
-          aria-label="delete"
-          onClick={handleDeleteClick}
-        >
+        <Fab size="small" aria-label="delete" onClick={handleDeleteClick}>
           <DeleteOutlineOutlinedIcon color="primary" />
         </Fab>
       </Box>

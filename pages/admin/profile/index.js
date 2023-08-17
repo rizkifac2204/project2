@@ -4,6 +4,7 @@ import AppConfig from "assets/appConfig";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 // MUI
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -46,45 +47,47 @@ function Profile() {
       <Head>
         <title>{`Profile - ${AppConfig.brandName}`}</title>
       </Head>
-      <Grid container spacing={1}>
-        <Grid item xs={12} md={3}>
-          <CardUser
-            data={{ ...profile, myself: true }}
-            url={`/api/profile`}
-            queryKey={["profile", "alamat"]}
-            isFotoAction={true}
-          />
-        </Grid>
-        <Grid item xs={12} md={9}>
-          <Box display="flex" flexDirection="column">
-            <Box mb={3}>
-              <CardUserUmum
-                data={profile}
-                url={`/api/profile`}
-                queryKey={["profile", "umum"]}
-              />
-            </Box>
-            <Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                  <CardUserBadan
-                    data={profile}
-                    url={`/api/profile/badan`}
-                    queryKey={["profile", "badan"]}
-                  />
+      <Container maxWidth={false}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} md={3}>
+            <CardUser
+              data={{ ...profile, myself: true }}
+              url={`/api/profile`}
+              queryKey={["profile", "alamat"]}
+              isFotoAction={true}
+            />
+          </Grid>
+          <Grid item xs={12} md={9}>
+            <Box display="flex" flexDirection="column">
+              <Box mb={3}>
+                <CardUserUmum
+                  data={profile}
+                  url={`/api/profile`}
+                  queryKey={["profile", "umum"]}
+                />
+              </Box>
+              <Box>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <CardUserBadan
+                      data={profile}
+                      url={`/api/profile/badan`}
+                      queryKey={["profile", "badan"]}
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <CardUserNomor
+                      data={profile}
+                      url={`/api/profile/nomor`}
+                      queryKey={["profile", "nomor"]}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={6}>
-                  <CardUserNomor
-                    data={profile}
-                    url={`/api/profile/nomor`}
-                    queryKey={["profile", "nomor"]}
-                  />
-                </Grid>
-              </Grid>
+              </Box>
             </Box>
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </>
   );
 }

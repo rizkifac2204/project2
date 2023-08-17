@@ -10,33 +10,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import FormHelperText from "@mui/material/FormHelperText";
-import { makeStyles } from "@mui/styles";
 
 // components
 import Thumb from "components/GlobalComponents/Thumb";
 import ContentLayout from "components/GlobalComponents/ContentLayout";
 import Wait from "components/GlobalComponents/Wait";
-
-const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-  },
-  profileThumb: {
-    "& >div": {
-      "& >div": {
-        "& >div:first-child": {
-          alignSelf: "center",
-        },
-      },
-    },
-  },
-  fileUpload: {
-    "& input": {
-      height: "auto",
-    },
-  },
-}));
 
 const validationSchema = yup.object({
   nama: yup.string("Masukan Nama").required("Harus Diisi"),
@@ -118,7 +96,6 @@ const handleSubmit = (values, setSubmitting, mutate, queryClient) => {
 };
 
 function ProfileFormUtama() {
-  const classes = useStyles();
   const { mutate } = useHandleSubmitMutation();
   const queryClient = useQueryClient();
   const {
@@ -177,7 +154,7 @@ function ProfileFormUtama() {
       <form onSubmit={formik.handleSubmit}>
         {/* input foto  */}
         {profile?.level_id !== 5 && (
-          <Box mb={3} className={classes.profileThumb}>
+          <Box mb={3}>
             <ContentLayout title="Foto">
               <Box width="100%" display="flex" alignItems="center">
                 <Box pr={2} className="avatar-thumb">
@@ -196,7 +173,6 @@ function ProfileFormUtama() {
                     type="file"
                     id="file"
                     name="file"
-                    className={classes.fileUpload}
                     onBlur={formik.handleBlur}
                     onChange={(event) => {
                       formik.setFieldValue(

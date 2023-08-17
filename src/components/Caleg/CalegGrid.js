@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Icon from "@mui/material/Icon";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
@@ -24,19 +23,22 @@ export default function CalegGrid(props) {
             <Grid item xs={12} sm={4} lg={3} key={index}>
               <Card>
                 <CardContent>
-                  <div className="contact-grid-action">
-                    <CalegAksi
-                      caleg={caleg}
-                      handleDeleteClick={handleDeleteClick}
-                    />
-                  </div>
+                  <CalegAksi
+                    caleg={caleg}
+                    handleDeleteClick={handleDeleteClick}
+                  />
 
                   <AvatarUser
                     file={null}
                     alt={caleg.nama}
-                    style={{ width: 100, height: 100, marginBottom: 10 }}
+                    style={{ width: 100, height: 100, margin: "0 auto" }}
                   />
-                  <div className="contact-grid-content">
+
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                  >
                     <Box
                       fontSize="subtitle1.fontSize"
                       fontWeight="h6.fontWeight"
@@ -44,42 +46,55 @@ export default function CalegGrid(props) {
                     >
                       {caleg.nama}
                     </Box>
-                    <Typography variant="subtitle2">{caleg?.partai}</Typography>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Box
-                        component="span"
-                        pr="5px"
-                        color="text.secondary"
-                        fontSize="body1.fontSize"
-                        className="icon fas fa-street-view"
-                      ></Box>
+
+                    <Box>
                       <Typography variant="subtitle2">
-                        {caleg?.alamat || "-"}
+                        {caleg?.partai}
                       </Typography>
                     </Box>
-                  </div>
+
+                    <Box
+                      component="span"
+                      pr="5px"
+                      color="text.secondary"
+                      fontSize="body1.fontSize"
+                    >
+                      {caleg?.alamat || "-"}
+                    </Box>
+                  </Box>
                 </CardContent>
-                <CardActions disableSpacing className="footer-icon">
-                  <IconButton size="small">
-                    <Icon style={{ fontSize: 20 }}>
-                      {caleg?.jenis_kelamin === "perempuan" ? "female" : "male"}
-                    </Icon>
-                  </IconButton>
-                  <IconButton size="small">
-                    <Typography variant="caption">
-                      No. {caleg?.nomor_urut || "-"}
-                    </Typography>
-                  </IconButton>
-                  <IconButton size="small">
-                    <Typography variant="caption">
-                      Dapil {caleg?.dapil || "-"}
-                    </Typography>
-                  </IconButton>
-                </CardActions>
+
+                <Box
+                  display="flex"
+                  justifyContent="space-around"
+                  flexDirection="center"
+                >
+                  <Box>
+                    <IconButton size="small">
+                      <Icon style={{ fontSize: 20 }}>
+                        {caleg?.jenis_kelamin === "perempuan"
+                          ? "female"
+                          : "male"}
+                      </Icon>
+                    </IconButton>
+                  </Box>
+
+                  <Box>
+                    <IconButton size="small">
+                      <Typography variant="caption">
+                        No. {caleg?.nomor_urut || "-"}
+                      </Typography>
+                    </IconButton>
+                  </Box>
+
+                  <Box>
+                    <IconButton size="small">
+                      <Typography variant="caption">
+                        Dapil {caleg?.dapil || "-"}
+                      </Typography>
+                    </IconButton>
+                  </Box>
+                </Box>
               </Card>
             </Grid>
           ))}

@@ -107,7 +107,7 @@ export default function Login(props) {
             }}
           >
             <Image
-              src="/images/bg.jpg"
+              src="/Images/bg.jpg"
               alt="PPID"
               quality={100}
               priority
@@ -129,7 +129,7 @@ export default function Login(props) {
             }}
           >
             <Box sx={{ m: 1 }}>
-              <Image src="/images/logo.png" width={50} height={50} alt="PPID" />
+              <Image src="/Images/logo.png" width={50} height={50} alt="PPID" />
             </Box>
             <Typography component="h1" variant="h5">
               Sign in {AppConfig.brandName}

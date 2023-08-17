@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 // MUI
-import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import Alert from "@mui/material/Alert";
@@ -85,92 +85,94 @@ function ProfileSetting() {
         <title>{`Setting Profile - ${AppConfig.brandName}`}</title>
       </Head>
 
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          aria-label="scrollable auto tabs example"
-        >
-          <Tab
-            icon={<EngineeringOutlinedIcon />}
-            iconPosition="start"
-            label="Utama"
-            {...a11yProps(0)}
-          />
-          <Tab
-            icon={<PersonSearchOutlinedIcon />}
-            iconPosition="start"
-            label="Informasi Umum"
-            {...a11yProps(1)}
-          />
-          <Tab
-            icon={<HomeOutlinedIcon />}
-            iconPosition="start"
-            label="Alamat"
-            {...a11yProps(2)}
-          />
-          <Tab
-            icon={<PsychologyOutlinedIcon />}
-            iconPosition="start"
-            label="Keterangan Badan"
-            {...a11yProps(3)}
-          />
-          <Tab
-            icon={<PaymentOutlinedIcon />}
-            iconPosition="start"
-            label="Informasi Lainnya"
-            {...a11yProps(4)}
-          />
-          <Tab
-            icon={<LockPersonIcon />}
-            iconPosition="start"
-            label="Keamanan"
-            {...a11yProps(5)}
-          />
-        </Tabs>
-      </Box>
+      <Container maxWidth={false}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="scrollable"
+            aria-label="scrollable auto tabs example"
+          >
+            <Tab
+              icon={<EngineeringOutlinedIcon />}
+              iconPosition="start"
+              label="Utama"
+              {...a11yProps(0)}
+            />
+            <Tab
+              icon={<PersonSearchOutlinedIcon />}
+              iconPosition="start"
+              label="Informasi Umum"
+              {...a11yProps(1)}
+            />
+            <Tab
+              icon={<HomeOutlinedIcon />}
+              iconPosition="start"
+              label="Alamat"
+              {...a11yProps(2)}
+            />
+            <Tab
+              icon={<PsychologyOutlinedIcon />}
+              iconPosition="start"
+              label="Keterangan Badan"
+              {...a11yProps(3)}
+            />
+            <Tab
+              icon={<PaymentOutlinedIcon />}
+              iconPosition="start"
+              label="Informasi Lainnya"
+              {...a11yProps(4)}
+            />
+            <Tab
+              icon={<LockPersonIcon />}
+              iconPosition="start"
+              label="Keamanan"
+              {...a11yProps(5)}
+            />
+          </Tabs>
+        </Box>
 
-      <TabPanel value={value} index={0}>
-        <Box pt={3}>
-          <ProfileFormUtama />
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Box pt={3}>
-          <ProfileFormUmum />
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Box pt={3}>
-          <ProfileFormAlamat />
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <Box pt={3}>
-          {profile?.level !== 5 ? (
-            <ProfileFormBadan />
-          ) : (
-            <Alert severity="info">Tidak Tersedia</Alert>
-          )}
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        <Box pt={3}>
-          {profile?.level !== 5 ? (
-            <ProfileFormNomor />
-          ) : (
-            <Alert severity="info">Tidak Tersedia</Alert>
-          )}
-        </Box>
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        <Box pt={3}>
-          <ProfileFormPassword />
-        </Box>
-      </TabPanel>
+        <TabPanel value={value} index={0}>
+          <Box pt={3}>
+            <ProfileFormUtama />
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Box pt={3}>
+            <ProfileFormUmum />
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Box pt={3}>
+            <ProfileFormAlamat />
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Box pt={3}>
+            {profile?.level !== 5 ? (
+              <ProfileFormBadan />
+            ) : (
+              <Alert severity="info">Tidak Tersedia</Alert>
+            )}
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <Box pt={3}>
+            {profile?.level !== 5 ? (
+              <ProfileFormNomor />
+            ) : (
+              <Alert severity="info">Tidak Tersedia</Alert>
+            )}
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={5}>
+          <Box pt={3}>
+            <ProfileFormPassword />
+          </Box>
+        </TabPanel>
+      </Container>
     </>
   );
 }

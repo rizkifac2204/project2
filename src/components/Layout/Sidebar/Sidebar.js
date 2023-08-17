@@ -92,7 +92,7 @@ function Sidebar(props) {
               {props.toggleSidebar ? (
                 props.darkMode ? (
                   <Image
-                    src="/images/logo-white.png"
+                    src="/Images/logo-white.png"
                     alt="Logo"
                     width={180}
                     height={50}
@@ -100,7 +100,7 @@ function Sidebar(props) {
                   />
                 ) : (
                   <Image
-                    src="/images/logo-dark.png"
+                    src="/Images/logo-dark.png"
                     alt="Logo"
                     width={180}
                     height={50}
@@ -109,7 +109,7 @@ function Sidebar(props) {
                 )
               ) : (
                 <Image
-                  src="/images/logo.png"
+                  src="/Images/logo.png"
                   alt="Logo"
                   width={50}
                   height={50}

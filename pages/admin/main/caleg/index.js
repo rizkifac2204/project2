@@ -133,13 +133,13 @@ function Caleg() {
           </Box>
           <Box ml={3}>
             <IconButton
-              className={utils.gridView === true ? "active" : ""}
+              color={utils.gridView === true ? "primary" : ""}
               onClick={() => setUtils((prev) => ({ ...prev, gridView: true }))}
             >
               <Icon>apps</Icon>
             </IconButton>
             <IconButton
-              className={utils.gridView === false ? "active" : ""}
+              color={utils.gridView === false ? "primary" : ""}
               onClick={() => setUtils((prev) => ({ ...prev, gridView: false }))}
             >
               <Icon>view_list</Icon>
